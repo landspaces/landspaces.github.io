@@ -5,17 +5,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="stylesheet" href="./assets/css/snow.css">
+  <script src="./assets/js/jquery-1.2.6.min.js"></script>
   <style>
+    body {
+      display: flex;
+      align-items: center;
+      /* justify-content: center; */
+      overflow: hidden;
+      filter: drop-shadow(0 0 10px white);
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      background: url('https://z3.ax1x.com/2021/05/01/gVTE6A.jpg') no-repeat;
+      background-size: cover;
+    }
     #index{
-      width: 100%;
-      height: 100%;
-      
+      /* z-index: 2; */
+      margin: 0 auto;
     }
     .nav{
-      width: 100%;
+      margin: 0 auto;
+      height: 100%;
+      width: 70%;
       min-width: 1000px;
-      height: 500px;
-      background-color: #ff32ff;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -23,16 +35,26 @@
     .nav a{
       display: block;
       width: 200px;
-      height: 200px;
-      line-height: 200px;
+      height: 100px;
+      line-height: 100px;
       text-align: center;
       font-size: 22px;
       font-weight: 800;
-      background-color: #ccff66;
-      border-radius: 50px;
+      background-color: #c6fa4c;
+      /* background-color: #66ffcc; */
+      border-radius: 38px;
       text-decoration: none;
     }
   </style>
+  <script>
+    $(document).ready(function(){
+      for (let i = 0; i < 200; i++) {
+        // const element = array[i];
+        $('body').append("<div class='snow'><div>")
+      }
+    })
+
+  </script>
 </head>
 <body>
   <div id="index">
