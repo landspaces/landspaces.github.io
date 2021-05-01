@@ -5,30 +5,33 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>aliyun.blue</title>
-  <link rel="icon" href="./assets/imgs/svg/Tomato.svg" sizes="172x172" type="image/vnd.microsoft.icon">
+  <link rel="icon" href="./assets/imgs/svg/Tomato.svg" type="image/vnd.microsoft.icon">
   <link rel="stylesheet" href="./assets/css/base.css">
   <link rel="stylesheet" href="./assets/css/snow.css">
   <script src="./assets/js/jquery-1.2.6.min.js"></script>
-  <script>$(document).ready(()=>{
-    $('.loading').hide();
-    for (let i = 0; i < 200; i++) {$('body').append("<div class='snow'><div>")}})</script>
   <script type="module">
     import localData from './assets/js/imgurl.js';
-    let firstImg = `${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`
-    $('body').css('background',`url(${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]})`)
-    $('body').css('background-size',`cover`)
-    $('.changeImg').click(()=>{
-      $('.loading').show()
-      let imgbox = new Image();
+    // 入口 加载图片 snow_dom
+    $(function(){
+      loadImg();
+      let Fragment = document.createDocumentFragment();
+      for (let i = 0; i <= 1000; i++) {Fragment.appendChild($("<div></div>").addClass('snow')[0])};
+      $('body').append(Fragment);
+    });
+    // 注册点击事件
+    $('.changeImg').click(()=>{loadImg();});
+    // 加载图片方法
+    function loadImg() {
+      $('.loading').show();$('.changeImg').disabled = true;
+      let imgbox = new Image();// 图片监测
       imgbox.src=`${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`;
       imgbox.onload = ()=>{
         setTimeout(() => {
-          $('body').css('background',`url(${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]})`)
-          $('body').css('background-size',`cover`)
-          $('.loading').hide()
+          $('body').css('background',`url(${imgbox.src})`).css('background-size',`cover`);
+          $('.loading').hide();$('.changeImg').disabled = true;
         }, 1000);
       };
-    })
+    }
   </script>
   <style>
     body {
@@ -37,9 +40,6 @@
       display: flex;
       overflow: hidden;
       filter: drop-shadow(0 0 10px white);
-      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-      background: url(`${firstImg}`) no-repeat;
-      background-size: cover;
     }
     .navMenu{
       height: 100%;
@@ -58,7 +58,7 @@
       text-align: center;
       font-size: 22px;
       font-weight: 800;
-      background-color: #c6fa4c;
+      background-color: #66ccff;
       border-radius: 38px;
       text-decoration: none;
     }
@@ -70,11 +70,10 @@
       left:0;
       line-height: 100vh;
       text-align: center;
-      color: red;
+      color: #ffffff;
       font-size: 20px;
       background-color: #ffffff;
-      opacity: 0.5;
-      /* background-image: url(); */
+      background-color:rgba(0,0,0,0.5);
     }
     .changeImg{
       position: absolute;
@@ -89,12 +88,16 @@
       color:#ffffff;
       background-color: #66ccff;
     }
+    .changeImg:hover{
+      cursor: pointer;
+      background-color: #66ffcc;
+    }
   </style>
 </head>
 <body>
   <div id="index">
-    <div class="changeImg">切换图片</div>
-    <div class="loading">在加载了,别催了</div>
+    <button class="changeImg">切换图片</button>
+    <div class="loading">努力加载中...</div>
     <div class="navMenu">
       <a href="./myBlog/index.html">我的博客</a>
       <a href="./vueDemo/dist/index.html">我的vuedemo</a>
