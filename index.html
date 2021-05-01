@@ -4,61 +4,98 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./assets/css/index.css">
+  <title>aliyun.blue</title>
+  <link rel="icon" href="./assets/imgs/svg/Tomato.svg" sizes="172x172" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="./assets/css/base.css">
   <link rel="stylesheet" href="./assets/css/snow.css">
   <script src="./assets/js/jquery-1.2.6.min.js"></script>
+  <script>$(document).ready(()=>{
+    $('.loading').hide();
+    for (let i = 0; i < 200; i++) {$('body').append("<div class='snow'><div>")}})</script>
+  <script type="module">
+    import localData from './assets/js/imgurl.js';
+    let firstImg = `${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`
+    $('body').css('background',`url(${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]})`)
+    $('body').css('background-size',`cover`)
+    $('.changeImg').click(()=>{
+      $('.loading').show()
+      let imgbox = new Image();
+      imgbox.src=`${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`;
+      imgbox.onload = ()=>{
+        setTimeout(() => {
+          $('body').css('background',`url(${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]})`)
+          $('body').css('background-size',`cover`)
+          $('.loading').hide()
+        }, 1000);
+      };
+    })
+  </script>
   <style>
     body {
+      width: 100vw;
+      height: 100vh;
       display: flex;
-      align-items: center;
-      /* justify-content: center; */
       overflow: hidden;
       filter: drop-shadow(0 0 10px white);
       background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-      background: url('https://z3.ax1x.com/2021/05/01/gVTE6A.jpg') no-repeat;
+      background: url(`${firstImg}`) no-repeat;
       background-size: cover;
     }
-    #index{
-      /* z-index: 2; */
-      margin: 0 auto;
-    }
-    .nav{
-      margin: 0 auto;
+    .navMenu{
       height: 100%;
-      width: 70%;
+      width: 100vw;
       min-width: 1000px;
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       align-items: center;
     }
-    .nav a{
+    .navMenu a{
       display: block;
       width: 200px;
       height: 100px;
+      margin: 0 20px;
       line-height: 100px;
       text-align: center;
       font-size: 22px;
       font-weight: 800;
       background-color: #c6fa4c;
-      /* background-color: #66ffcc; */
       border-radius: 38px;
       text-decoration: none;
     }
+    .loading{
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top:0;
+      left:0;
+      line-height: 100vh;
+      text-align: center;
+      color: red;
+      font-size: 20px;
+      background-color: #ffffff;
+      opacity: 0.5;
+      /* background-image: url(); */
+    }
+    .changeImg{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 80px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      margin: 5px;
+      border: 1px solid #ffffff;
+      color:#ffffff;
+      background-color: #66ccff;
+    }
   </style>
-  <script>
-    $(document).ready(function(){
-      for (let i = 0; i < 200; i++) {
-        // const element = array[i];
-        $('body').append("<div class='snow'><div>")
-      }
-    })
-
-  </script>
 </head>
 <body>
   <div id="index">
-    <div class="nav">
+    <div class="changeImg">切换图片</div>
+    <div class="loading">在加载了,别催了</div>
+    <div class="navMenu">
       <a href="./myBlog/index.html">我的博客</a>
       <a href="./vueDemo/dist/index.html">我的vuedemo</a>
       <a>暂未开放</a>
