@@ -94,10 +94,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  color: #66ffcc;
-}
-
 h1,
 h2,
 h3,
@@ -141,6 +137,7 @@ h6 {
   width: 10px;
   height: 10px;
   /* background: gold; */
+  /* background: pink; */
   /* background: black; */
   background: #ffffff;
   border-radius: 50%
