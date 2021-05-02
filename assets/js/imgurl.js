@@ -55,7 +55,6 @@ const localData = {
     'https://z3.ax1x.com/2021/05/01/gZE8gJ.jpg',
     'https://z3.ax1x.com/2021/05/01/gZEQ4U.jpg',
     'https://z3.ax1x.com/2021/05/01/gZEMNT.jpg',
-    'https://z3.ax1x.com/2021/05/01/gZEKEV.jpg',
     'https://z3.ax1x.com/2021/05/01/gZEnH0.jpg',
     'https://z3.ax1x.com/2021/05/01/gZEmBq.jpg',
     'https://z3.ax1x.com/2021/05/01/gZEeun.jpg',
