@@ -14,23 +14,22 @@
     import localData from './assets/js/imgurl.js';
     // 入口 加载图片 snow_dom
     $(function(){
-      loadImg();
+      let defaultImg = './assets/imgs/img/qBrF1yu5Wys.jpg'
+      loadImg(defaultImg);
       let Fragment = document.createDocumentFragment();
       for (let i = 0; i <= 500; i++) {Fragment.appendChild($("<div></div>").addClass('snow')[0])};
       $('body').append(Fragment);
     });
     // 注册点击事件
-    $('.changeImg').click(()=>{loadImg();});
+    $('.changeImg').click(()=>{let Imgurl = `${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`;loadImg(Imgurl);});
     // 加载图片方法
-    function loadImg() {
+    function loadImg(url) {
       $('.loading').show();$('.changeImg').disabled = true;
       let imgbox = new Image();// 图片监测
-      imgbox.src=`${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`;
+      imgbox.src=url;
       imgbox.onload = ()=>{
-        setTimeout(() => {
-          $('body').css('background',`url(${imgbox.src})`).css('background-size',`cover`);
-          $('.loading').hide();$('.changeImg').disabled = true;
-        }, 1000);
+        $('body').css('background',`url(${imgbox.src})`).css('background-size',`cover`);
+        $('.loading').hide();$('.changeImg').disabled = true;
       };
     }
   </script>
@@ -126,6 +125,7 @@
       <a>暂未开放</a>
     </div>
   </div>
+  <!-- 看板娘 -->
   <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
   <script>
     var jsonModel = [
@@ -145,7 +145,7 @@
         "width": 120, // 宽度
         "height": 150, // 高度
         "hOffset": 10, // 横向边距
-        "vOffset": 10 // 众向边距
+        "vOffset": 5 // 众向边距
       },
       "mobile": {
         "show": false // 手机是否显示
