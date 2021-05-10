@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue</title>
+  <script src="./assets/js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<message content='Hello World'></message>
+  </div> 
+<script>
+  // 注册组件
+  Vue.component('message', {
+    template: '<div>hello word</div>',
+    props: ['todo'],
+    data:()=>{
+      return {} //组件内data是函数
+    }
+  });
+  // 渲染到根节点
+  let data = { name:'李狗蛋' }
+  let vm = new Vue({
+    el:'#app',
+    data:data //data是对象
+  })
+  console.log(vm.name === data.name);// -> true
+  console.log(vm.$data === data);// -> true
+  console.log(vm.$el === document.getElementById('app'));// -> true
+</script>
+</body>
+</html>
