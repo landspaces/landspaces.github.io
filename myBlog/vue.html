@@ -8,27 +8,187 @@
   <script src="./assets/js/vue.js"></script>
 </head>
 <body>
+  <!-- 根组件app  -->
 	<div id="app">
-		<message content='Hello World'></message>
-  </div> 
+		<message :todo="name"></message>
+    {{name}}
+    {{msg}}
+  </div>
+  <div class="rootApi">
+
+  </div>
 <script>
-  // 注册组件
+  // 注册全局组件
   Vue.component('message', {
-    template: '<div>hello word</div>',
-    props: ['todo'],
+    template: '<div>i am 全局组件</div>',
     data:()=>{
       return {} //组件内data是函数
     }
   });
+  // 注册局部组件
+  let ComponentA = {
+    template: '<div>i am 局部组件</div>',
+    data:()=>{
+      return {} //组件内data是函数
+    }
+  }
   // 渲染到根节点
-  let data = { name:'李狗蛋' }
+  let data = {
+    name:'李狗蛋',
+    msg:''
+  }
   let vm = new Vue({
     el:'#app',
     data:data //data是对象
   })
+  console.log(vm);// -> true
   console.log(vm.name === data.name);// -> true
   console.log(vm.$data === data);// -> true
   console.log(vm.$el === document.getElementById('app'));// -> true
+/////////////////////////////////
+// 全局API
+/////////////////////////////////
+/*
+  Vue.extend
+    使用基础 Vue 构造器，创建一个“子类”。参数是一个包含组件选项的对象。
+    data 选项是特例，需要注意 - 在 Vue.extend() 中它必须是函数
+*/
+  let Profile = Vue.extend(ComponentA)
+  new Profile().$mount('.rootApi')
+  
+
+/*
+  Vue.nextTick
+  dom更新
+*/
+  Vue.nextTick(function () {
+      // DOM 更新了
+  })
+
+
+/*
+  Vue.set( target, propertyName/index, value )
+  向响应式对象中添加一个 property，并确保这个新 property 同样是响应式的，且触发视图更新。
+*/
+  let objarr = []
+  let keyorindex = 0
+  let value  = '222'
+  Vue.set(objarr,keyorindex,value)
+
+
+/*
+  Vue.delete( target, propertyName/index )
+  删除对象的 property。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到 property 被删除的限制
+*/
+  Vue.delete(objarr,keyorindex)
+
+
+/*
+  Vue.directive( id, [definition] )
+  注册或获取全局指令 参考自定义指令
+*/
+  Vue.directive('my-directive', {})
+
+
+/*
+  Vue.filter( id, [definition] )
+  注册或获取全局过滤器
+*/
+  Vue.filter('my-filter', function (value) {
+    // 返回处理后的值
+  })
+  // getter，返回已注册的过滤器
+  var myFilter = Vue.filter('my-filter')
+
+
+/*
+  Vue.component( id, [definition] )
+  注册或获取全局组件.注册还会自动使用给定的 id 设置组件的名称
+*/
+  // 注册组件，传入一个扩展过的构造器
+  Vue.component('my-component', Vue.extend({ /* ... */ }))
+
+  // 注册组件，传入一个选项对象 (自动调用 Vue.extend)
+  Vue.component('my-component', { /* ... */ })
+
+  // 获取注册的组件 (始终返回构造器)
+  var MyComponent = Vue.component('my-component')
+
+
+/*
+  Vue.use( plugin )
+  安装 Vue.js 插件。如果插件是一个对象，必须提供 install 方法。如果插件是一个函数，它会被作为 install 方法。install 方法调用时，会将 Vue 作为参数传入。
+  参考 插件
+*/
+  // 该方法需要在调用 new Vue() 之前被调用。
+  // 当 install 方法被同一个插件多次调用，插件将只会被安装一次。
+  // Vue.use(element)
+
+  
+/*
+  Vue.mixin( mixin )
+  全局注册一个混入，影响注册之后所有创建的每个 Vue 实例。插件作者可以使用混入，向组件注入自定义的行为。不推荐在应用代码中使用
+*/
+  // 一旦使用全局混入，它将影响每一个之后创建的 Vue 实例 , 推荐作为插件发布
+  Vue.mixin({
+    created: function () {
+      var myOption = this.$options.myOption
+      if (myOption) {
+        console.log(myOption)
+      }
+    }
+  })
+
+  
+/*
+  Vue.compile( template ) // TODO:
+  将一个模板字符串编译成 render 函数。只在完整版时可用。
+  参考 渲染函数 https://cn.vuejs.org/v2/guide/render-function.html
+*/
+  var res = Vue.compile('<div><span>{{ msg }}</span></div>')
+  new Vue({
+    data: {
+      msg: 'hello'
+    },
+    render: res.render,
+    staticRenderFns: res.staticRenderFns
+  })
+
+
+  
+/*
+  Vue.observable( object )
+  让一个对象可响应。Vue 内部会用它来处理 data 函数返回的对象。
+  返回的对象可以直接用于渲染函数和计算属性内，并且会在发生变更时触发相应的更新
+  也可以作为最小化的跨组件状态存储器，用于简单的场景：
+  参考https://cn.vuejs.org/v2/guide/reactivity.html 深入响应原理
+*/
+  const state = Vue.observable({ count: 0 })
+
+  const Demo = {
+    render(h) {
+      return h('button', {
+        on: { click: () => { state.count++ }}
+      }, `count is: ${state.count}`)
+    }
+  }
+
+
+  
+/*
+  Vue.version
+  细节：提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
+*/
+  var version = Number(Vue.version.split('.')[0])
+
+  if (version === 2) {
+    // Vue v2.x.x
+  } else if (version === 1) {
+    // Vue v1.x.x
+  } else {
+    // Unsupported versions of Vue
+  }
+
 </script>
 </body>
 </html>
