@@ -80,16 +80,25 @@ body {
   cursor: pointer;
   background-color: #66ffcc;
 }
+/* 播放器 */
 .audioPlayer{
   position: fixed;
   top: 50px;
-  left: 0px;
-  width: 20vw;
-  
+  left: 0px;  
 }
+/* 播放器高度 */
 .aplayer-list{
   max-height: 70vh!important;
 }
 .aplayer-list ol{
   max-height: 70vh!important;
+}
+/* 播放器Mini css */
+.playerMini .aplayer{
+  border: 1px solid #fff!important;
+  border-radius: 50%;
+}
+.playerMini .aplayer .aplayer-pic .aplayer-pause{
+  bottom: 22px;
+  right: 22px;
 }
