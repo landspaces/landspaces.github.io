@@ -1,0 +1,95 @@
+@import './base.css';
+@import './snow.css';
+@import './APlayer.min.css';
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  filter: drop-shadow(0 0 10px white);
+}
+
+.navMenu {
+  width: 60vw;
+  min-width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 20vh;
+  left: 20vw;
+}
+
+.navMenu a {
+  display: block;
+  width: 200px;
+  height: 100px;
+  margin: 20px 20px 0 20px;
+  line-height: 100px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  background-color: #66ccff;
+  border-radius: 25px;
+  text-decoration: none;
+}
+
+.navMenu a:hover {
+  color: #66ffcc;
+}
+
+.loading {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  line-height: 100vh;
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999999;
+}
+
+.loading img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  filter: drop-shadow(0px 0px 30px #66ccff);
+}
+.tools{
+  position: absolute;
+  top: 0px;
+  left: 0px;  
+}
+.tools .changeImg {
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin: 5px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: #66ccff;
+}
+
+.tools .changeImg:hover {
+  cursor: pointer;
+  background-color: #66ffcc;
+}
+.audioPlayer{
+  position: fixed;
+  top: 50px;
+  left: 0px;
+  width: 20vw;
+  
+}
+.aplayer-list{
+  max-height: 70vh!important;
+}
+.aplayer-list ol{
+  max-height: 70vh!important;
+}

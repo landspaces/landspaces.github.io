@@ -6,113 +6,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>aliyun.blue</title>
   <link rel="icon" href="./assets/imgs/svg/Tomato.svg" type="image/vnd.microsoft.icon">
-  <link rel="stylesheet" href="./assets/css/base.css">
-  <link rel="stylesheet" href="./assets/css/snow.css">
+  <!-- index页面样式 -->
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <!-- jquery -->
   <script src="./assets/js/jquery-1.2.6.min.js"></script>
-  <script src="./assets/js/mouse.js"></script>
+  <!-- 播放器插件 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>   -->
+  <script src="./assets/js/APlayer.min.js"></script>
+  <script src="./assets/js/Meting.min.js"></script>
   <script type="module">
     import localData from './assets/js/imgurl.js';
     // 入口 加载图片 snow_dom
     $(function(){
-      let defaultImg = './assets/imgs/img/qBrF1yu5Wys.jpg'
+      // 首加载的背景
+      // let defaultImg = './assets/imgs/img/qBrF1yu5Wys.jpg'
+      let defaultImg = localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))];
       loadImg(defaultImg);
+      // 创造雪花
       let Fragment = document.createDocumentFragment();
       for (let i = 0; i <= 500; i++) {Fragment.appendChild($("<div></div>").addClass('snow')[0])};
       $('body').append(Fragment);
+      // $('.audioPlayer').hide();
     });
-    // 注册点击事件
-    $('.changeImg').click(()=>{let Imgurl = `${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`;loadImg(Imgurl);});
+    // 注册点击切换图片
+    $('.clickChangeImg').click(()=>{let Imgurl = `${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`;loadImg(Imgurl);});
+    // 注册点击播放音乐(暂时废弃)
+    $('.clickMusic').click(()=>{$('.audioPlayer').toggle()});
     // 加载图片方法
     function loadImg(url) {
-      $('.loading').show();$('.changeImg').disabled = true;
+      $('.loading').show();$('.clickChangeImg').disabled = true;
       let imgbox = new Image();// 图片监测
       imgbox.src=url;
       imgbox.onload = ()=>{
         $('body').css('background',`url(${imgbox.src})`).css('background-size',`cover`);
-        $('.loading').hide();$('.changeImg').disabled = true;
+        $('.loading').hide();$('.clickChangeImg').disabled = true;
       };
     }
   </script>
-  <style>
-    body {
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      overflow: hidden;
-      filter: drop-shadow(0 0 10px white);
-    }
-
-    .navMenu {
-      height: 60%;
-      width: 100vw;
-      min-width: 1000px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .navMenu a {
-      display: block;
-      width: 200px;
-      height: 100px;
-      margin: 0 20px;
-      line-height: 100px;
-      text-align: center;
-      font-size: 22px;
-      font-weight: 800;
-      background-color: #66ccff;
-      border-radius: 25px;
-      text-decoration: none;
-    }
-
-    .navMenu a:hover {
-      color: #66ffcc;
-    }
-
-    .loading {
-      position: absolute;
-      width: 100vw;
-      height: 100vh;
-      top: 0;
-      left: 0;
-      line-height: 100vh;
-      text-align: center;
-      color: #ffffff;
-      font-size: 20px;
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .loading img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      filter: drop-shadow(0px 0px 30px #66ccff);
-    }
-
-    .changeImg {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 80px;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-      margin: 5px;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-      background-color: #66ccff;
-    }
-
-    .changeImg:hover {
-      cursor: pointer;
-      background-color: #66ffcc;
-    }
-  </style>
 </head>
 
 <body>
   <div id="index">
-    <button class="changeImg">切换图片</button>
+    <div class="tools">
+      <button class="changeImg clickChangeImg">换个图片</button>
+      <!-- <button class="changeImg clickMusic">我想听歌(暂时废弃)</button> -->
+    </div>
     <div class="loading">
       <img src="./assets/imgs/loading/catcat.gif" alt="">
       <!-- <img src="./assets/imgs/loading/knife.gif" alt=""> -->
@@ -123,8 +62,52 @@
       <a href="./vueDemo/dist/index.html">我的vuedemo</a>
       <a>暂未开放</a>
       <a>暂未开放</a>
+      <a>暂未开放</a>
+      <a>暂未开放</a>
+      <a>暂未开放</a>
+    </div>
+    <div class="audioPlayer">
+      <!-- player -->
+      <meting-js
+      server="netease"
+      type="playlist"
+      id="125102396">
+      </meting-js>
+      <!-- 
+        *id
+          song id / playlist id / album id / search keyword
+        *server	
+          平台: netease, tencent, kugou, xiami, baidu
+        *type
+          song, playlist, album, search, artist
+        auto
+        fixed	默认false	
+        mini	默认false	
+        autoplay 默认false
+        theme	默认2980b9
+        loop 默认'all'
+          'all', 'one', 'none'
+        order	默认list
+          'list', 'random'
+        preload	预加载.默认auto
+          'none', 'metadata', 'auto'
+        volume	默认0.7
+        mutex	true 互斥锁
+        lrc-type	默认0	歌词类型
+        list-folded	默认false 列表折叠
+        list-max-height	默认340px
+        storage-name	metingjs
+      -->
+      <!-- max -->
+      <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=125102396&auto=0&height=430"></iframe> -->
+      <!-- mormal -->
+      <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=125102396&auto=0&height=90"></iframe> -->
+      <!-- mini -->
+      <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=0&id=125102396&auto=0&height=32"></iframe> -->
     </div>
   </div>
+  <!-- 鼠标效果 -->
+  <script src="./assets/js/mouse.js"></script>
   <!-- 看板娘 -->
   <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
   <script>

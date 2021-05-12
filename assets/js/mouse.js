@@ -5,7 +5,6 @@ $(function ($) {
     let arrcolor = new Array("#70f3ff", "#ff461f", "#fff143", "#3b2e7e", "#ffb3a7", "#f20c00", "#00e500", "#801dae", "#ffb61e", "#ff0097", "#f05654", "#faff72");
     let $i = $("<span/>").text(arrfont[arrIndex]);
     arrIndex = (arrIndex + 1) % arrfont.length;
-    console.log(arrIndex);
     let x = e.pageX,y = e.pageY;
     $i.css({
       "z-index": 5,
@@ -24,9 +23,11 @@ $(function ($) {
         $i.remove();
     });
   });
-  setTimeout(()=>{
-    $(".buryit").removeAttr("onclick");
-  }, 500);
+  $(".buryit").removeAttr("onclick");
+
+  // setTimeout(()=>{
+  //   $(".buryit").removeAttr("onclick");
+  // }, 500);
 });
 
 function delay() {
