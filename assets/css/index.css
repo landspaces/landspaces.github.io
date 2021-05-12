@@ -96,9 +96,21 @@ body {
 /* 播放器Mini css */
 .playerMini .aplayer{
   border: 1px solid #fff!important;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 .playerMini .aplayer .aplayer-pic .aplayer-pause{
   bottom: 22px;
   right: 22px;
 }
+.controllMusic{
+  display: flex;
+  justify-content: space-between;
+}
+.controllMusic svg{
+  cursor: pointer;
+  color: black;
+}
+/* .controllMusic .front,.controllMusic .next{
+  width: 10px;
+  height: 10px;
+} */

@@ -9,7 +9,9 @@ import localData from './localData.js';
     $('.clickChangeImg').click(()=>{let Imgurl = `${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`;loadImg(Imgurl);});
     // 注册点击播放音乐(暂时废弃)
     $('.clickMusic').click(()=>{$('.audioPlayer').toggle()});
-
+    $('.controllMusic .front').click(()=>{$('meting-js')[0].aplayer.skipBack()})
+    $('.controllMusic .refresh').click(()=>{$('meting-js')[0].aplayer.setMode('normal')})
+    $('.controllMusic .next').click(()=>{$('meting-js')[0].aplayer.skipForward()})
 /////////////////////////////////////////////////////////////////
 // 注册各种方法
 /////////////////////////////////////////////////////////////////
