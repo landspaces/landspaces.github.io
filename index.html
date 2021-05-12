@@ -15,42 +15,16 @@
   <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>   -->
   <script src="./assets/js/APlayer.min.js"></script>
   <script src="./assets/js/Meting.min.js"></script>
-  <script type="module">
-    import localData from './assets/js/imgurl.js';
-    // 入口 加载图片 snow_dom
-    $(function(){
-      // 首加载的背景
-      // let defaultImg = './assets/imgs/img/qBrF1yu5Wys.jpg'
-      let defaultImg = localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))];
-      loadImg(defaultImg);
-      // 创造雪花
-      let Fragment = document.createDocumentFragment();
-      for (let i = 0; i <= 500; i++) {Fragment.appendChild($("<div></div>").addClass('snow')[0])};
-      $('body').append(Fragment);
-      // $('.audioPlayer').hide();
-    });
-    // 注册点击切换图片
-    $('.clickChangeImg').click(()=>{let Imgurl = `${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`;loadImg(Imgurl);});
-    // 注册点击播放音乐(暂时废弃)
-    $('.clickMusic').click(()=>{$('.audioPlayer').toggle()});
-    // 加载图片方法
-    function loadImg(url) {
-      $('.loading').show();$('.clickChangeImg').disabled = true;
-      let imgbox = new Image();// 图片监测
-      imgbox.src=url;
-      imgbox.onload = ()=>{
-        $('body').css('background',`url(${imgbox.src})`).css('background-size',`cover`);
-        $('.loading').hide();$('.clickChangeImg').disabled = true;
-      };
-    }
-  </script>
+  <!-- indexjs -->
+  <script type="module" src="./assets/js/index.js"></script>
 </head>
 
 <body>
+  <div id="snowbox"></div>
   <div id="index">
     <div class="tools">
-      <button class="changeImg clickChangeImg">换个图片</button>
-      <!-- <button class="changeImg clickMusic">我想听歌(暂时废弃)</button> -->
+      <button class="changeImg clickChangeImg">换个背景</button>
+      <button class="changeImg clickMusic">我想听歌</button>
     </div>
     <div class="loading">
       <img src="./assets/imgs/loading/catcat.gif" alt="">
@@ -61,18 +35,18 @@
       <a href="./myBlog/index.html">我的博客</a>
       <a href="./vueDemo/dist/index.html">我的vuedemo</a>
       <a>暂未开放</a>
-      <a>暂未开放</a>
-      <a>暂未开放</a>
-      <a>暂未开放</a>
-      <a>暂未开放</a>
     </div>
     <div class="audioPlayer">
       <!-- player -->
       <meting-js
       server="netease"
       type="playlist"
-      id="125102396">
+      list-folded='true'
+      lrc-type='0'
+      id="2005412605">
       </meting-js>
+      <!-- //我喜欢的 125102396 -->
+      <!-- //苏联 2005412605 -->
       <!-- 
         *id
           song id / playlist id / album id / search keyword
@@ -98,16 +72,10 @@
         list-max-height	默认340px
         storage-name	metingjs
       -->
-      <!-- max -->
-      <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=125102396&auto=0&height=430"></iframe> -->
-      <!-- mormal -->
-      <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=125102396&auto=0&height=90"></iframe> -->
-      <!-- mini -->
-      <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=0&id=125102396&auto=0&height=32"></iframe> -->
     </div>
   </div>
   <!-- 鼠标效果 -->
-  <script src="./assets/js/mouse.js"></script>
+  <!-- <script src="./assets/js/mouse.js"></script> -->
   <!-- 看板娘 -->
   <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
   <script>
