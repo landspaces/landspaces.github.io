@@ -6,7 +6,8 @@ import localData from './localData.js';
 /////////////////////////////////////////////////////////////////
 // 注册点击事件
 /////////////////////////////////////////////////////////////////
-    $('.clickChangeImg').click(()=>{let Imgurl = `${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`;loadImg(Imgurl);});
+    $('.clickChangeImg').click(()=>{let Imgurl = `${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`;loadImg(Imgurl,'img');});
+    $('.clickChangeRepeat').click(()=>{let Imgurl = `${localData.repeatimgArr[Math.floor((Math.random()*localData.repeatimgArr.length))]}`;loadImg(Imgurl,'repeat');});
     // 注册点击播放音乐(暂时废弃)
     $('.clickMusic').click(()=>{$('.audioPlayer').toggle()});
     $('.controllMusic .front').click(()=>{$('meting-js')[0].aplayer.skipBack()})
@@ -19,10 +20,13 @@ import localData from './localData.js';
 // 首次加载方法
     function init() {
       $('.controllMusic .mini').hide();
-      // 首加载的背景
-      let defaultImg = './assets/imgs/img/qBrF1yu5Wys.jpg'
+      // 首加载的图片
       // let defaultImg = localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))];
-      loadImg(defaultImg);
+      // loadImg(defaultImg,'img');
+      
+      // 首加载的平铺
+      let defaultImg = localData.repeatimgArr[Math.floor((Math.random()*localData.repeatimgArr.length))];
+      loadImg(defaultImg,'repeat');
 
       // 创造雪花
       let Fragment = document.createDocumentFragment();
@@ -33,12 +37,14 @@ import localData from './localData.js';
       // $('.audioPlayer').hide();
     }
 // 加载图片方法
-    function loadImg(url) {
+    function loadImg(url,type) {
       $('.loading').show();$('.clickChangeImg').disabled = true;
       let imgbox = new Image();// 图片监测
       imgbox.src=url;
       imgbox.onload = ()=>{
-        $('body').css('background',`url(${imgbox.src})`).css('background-size',`cover`);
+        type === 'img' ?
+        $('body').css('background',`url(${imgbox.src})`).css('background-size',`cover`):
+        $('body').css('background',`url(${imgbox.src})`)
         $('.loading').hide();$('.clickChangeImg').disabled = true;
       };
     }
