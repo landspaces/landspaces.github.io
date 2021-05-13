@@ -6,7 +6,7 @@ import localData from './localData.js';
 /////////////////////////////////////////////////////////////////
 // 注册点击事件
 /////////////////////////////////////////////////////////////////
-    $('.clickChangeImg').click(()=>{let Imgurl = `${localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))]}`;loadImg(Imgurl,'img');});
+    $('.clickChangeImg').click(()=>{let Imgurl = `${localData.macImgArr[Math.floor((Math.random()*localData.macImgArr.length))]}`;loadImg(Imgurl,'img');});
     $('.clickChangeRepeat').click(()=>{let Imgurl = `${localData.repeatimgArr[Math.floor((Math.random()*localData.repeatimgArr.length))]}`;loadImg(Imgurl,'repeat');});
     // 注册点击播放音乐(暂时废弃)
     $('.clickMusic').click(()=>{$('.audioPlayer').toggle()});
@@ -21,7 +21,7 @@ import localData from './localData.js';
     function init() {
       $('.controllMusic .mini').hide();
       // 首加载的图片
-      // let defaultImg = localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))];
+      // let defaultImg = localData.macImgArr[Math.floor((Math.random()*localData.macImgArr.length))];
       // loadImg(defaultImg,'img');
       
       // 首加载的平铺
@@ -46,8 +46,7 @@ import localData from './localData.js';
       let imgbox = new Image();// 图片监测
       imgbox.src=url;
       imgbox.onload = ()=>{
-      console.log(Date.parse(new Date()),'img end');
-
+        console.log(Date.parse(new Date()),'img end');
         type === 'img' ?
         $('body').css('background',`url(${imgbox.src})`).css('background-size',`cover`):
         $('body').css('background',`url(${imgbox.src})`)
