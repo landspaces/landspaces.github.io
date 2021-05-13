@@ -84,7 +84,7 @@ body {
 .audioPlayer{
   position: fixed;
   top: 50px;
-  left: 0px;  
+  left: 5px;  
 }
 /* 播放器高度 */
 .aplayer-list{
@@ -96,6 +96,7 @@ body {
 /* 播放器Mini css */
 .playerMini .aplayer{
   border: 1px solid #fff!important;
+  max-width: 28vw;
   /* border-radius: 50%; */
 }
 .playerMini .aplayer .aplayer-pic .aplayer-pause{
@@ -103,14 +104,19 @@ body {
   right: 22px;
 }
 .controllMusic{
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff30;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  padding: 2px;
+  box-sizing: border-box;
 }
 .controllMusic svg{
   cursor: pointer;
   color: black;
 }
-/* .controllMusic .front,.controllMusic .next{
-  width: 10px;
-  height: 10px;
-} */
+.controllMusic .front,.controllMusic .next,.controllMusic .normal,.controllMusic .mini{
+  width: 25px;
+  height: 20px;
+}

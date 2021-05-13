@@ -10,13 +10,15 @@ import localData from './localData.js';
     // 注册点击播放音乐(暂时废弃)
     $('.clickMusic').click(()=>{$('.audioPlayer').toggle()});
     $('.controllMusic .front').click(()=>{$('meting-js')[0].aplayer.skipBack()})
-    $('.controllMusic .refresh').click(()=>{$('meting-js')[0].aplayer.setMode('normal')})
     $('.controllMusic .next').click(()=>{$('meting-js')[0].aplayer.skipForward()})
+    $('.controllMusic .normal').click(()=>{$('meting-js')[0].aplayer.setMode('normal');$('.controllMusic .normal').hide();$('.controllMusic .mini').show()})
+    $('.controllMusic .mini').click(()=>{$('meting-js')[0].aplayer.setMode('mini');$('.controllMusic .mini').hide();$('.controllMusic .normal').show()})
 /////////////////////////////////////////////////////////////////
 // 注册各种方法
 /////////////////////////////////////////////////////////////////
 // 首次加载方法
     function init() {
+      $('.controllMusic .mini').hide();
       // 首加载的背景
       let defaultImg = './assets/imgs/img/qBrF1yu5Wys.jpg'
       // let defaultImg = localData.imgArr[Math.floor((Math.random()*localData.imgArr.length))];
