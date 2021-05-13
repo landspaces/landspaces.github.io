@@ -29,8 +29,11 @@ import localData from './localData.js';
       loadImg(defaultImg,'repeat');
 
       // 创造雪花
+      console.log(Date.parse(new Date()),'snow start');
       let Fragment = document.createDocumentFragment();
       for (let i = 0; i <= 500; i++) {Fragment.appendChild($("<div></div>").addClass('snow')[0])};
+      console.log(Date.parse(new Date()),'snow end');
+
       $('#snowbox').append(Fragment);
 
       // 音乐播放器开关
@@ -39,9 +42,12 @@ import localData from './localData.js';
 // 加载图片方法
     function loadImg(url,type) {
       $('.loading').show();$('.clickChangeImg').disabled = true;
+      console.log(Date.parse(new Date()),'img start');
       let imgbox = new Image();// 图片监测
       imgbox.src=url;
       imgbox.onload = ()=>{
+      console.log(Date.parse(new Date()),'img end');
+
         type === 'img' ?
         $('body').css('background',`url(${imgbox.src})`).css('background-size',`cover`):
         $('body').css('background',`url(${imgbox.src})`)
