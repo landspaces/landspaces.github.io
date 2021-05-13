@@ -4,14 +4,15 @@
 body {
   width: 100vw;
   height: 100vh;
-  display: flex;
+  /* display: flex; */
   overflow: hidden;
+  font: 12px/150% Arial, Verdana, "\5b8b\4f53";
   filter: drop-shadow(0 0 10px white);
 }
 
 .navMenu {
   width: 60vw;
-  min-width: 1000px;
+  /* min-width: 1000px; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -23,15 +24,15 @@ body {
 
 .navMenu a {
   display: block;
-  width: 200px;
-  height: 100px;
+  width: 12rem;
+  height: 6rem;
   margin: 20px 20px 0 20px;
-  line-height: 100px;
+  line-height: 6rem;
   text-align: center;
   font-size: 22px;
   font-weight: 800;
   background-color: #66ccff;
-  border-radius: 25px;
+  border-radius: 0.5rem;
   text-decoration: none;
 }
 
@@ -45,7 +46,7 @@ body {
   height: 100vh;
   top: 0;
   left: 0;
-  line-height: 100vh;
+  line-height: 85vh;
   text-align: center;
   color: #ffffff;
   font-size: 20px;
@@ -54,8 +55,8 @@ body {
 }
 
 .loading img {
-  width: 150px;
-  height: 150px;
+  width: 8rem;
+  height: 8rem;
   border-radius: 50%;
   filter: drop-shadow(0px 0px 30px #66ccff);
 }

@@ -68,12 +68,6 @@ table {
   border-collapse: collapse;
 }
 
-body {
-  font: 12px/150% Arial, Verdana, "\5b8b\4f53";
-  color: #666;
-  background: #fff
-}
-
 .clearfix:before,
 .clearfix:after {
   content: "";
@@ -105,35 +99,10 @@ h6 {
   font-size: 100%;
 }
 
-/*公共类*/
-.w {
-  /*版心 提取 */
-  width: 1210px;
-  margin: 0 auto;
-}
-
-.fl {
-  float: left
-}
-
-.fr {
-  float: right
-}
-
-.tal {
-  text-align: left
-}
-
-.tac {
-  text-align: center
-}
-
-.tar {
-  text-align: right
-}
 #snowbox{
-  position: relative;
-  z-index: 999999;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 .snow {
   position: absolute;
