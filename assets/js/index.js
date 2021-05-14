@@ -7,7 +7,7 @@ import localData from './localData.js';
 // 注册点击事件
 /////////////////////////////////////////////////////////////////
     $('.clickChangeImg').click(()=>{let Imgurl = `${localData.macImgArr[Math.floor((Math.random()*localData.macImgArr.length))]}`;loadImg(Imgurl,'img');});
-    $('.clickChangeRepeat').click(()=>{let Imgurl = `${localData.repeatimgArr[Math.floor((Math.random()*localData.repeatimgArr.length))]}`;loadImg(Imgurl,'repeat');});
+    $('.clickChangeRepeat').click(()=>{let Imgurl = `${localData.macRepeatArr[Math.floor((Math.random()*localData.macRepeatArr.length))]}`;loadImg(Imgurl,'repeat');});
     // 注册点击播放音乐(暂时废弃)
     $('.clickMusic').click(()=>{$('.audioPlayer').toggle()});
     $('.controllMusic .front').click(()=>{$('meting-js')[0].aplayer.skipBack()})
@@ -25,7 +25,7 @@ import localData from './localData.js';
       // loadImg(defaultImg,'img');
       
       // 首加载的平铺
-      let defaultImg = localData.repeatimgArr[Math.floor((Math.random()*localData.repeatimgArr.length))];
+      let defaultImg = localData.macRepeatArr[Math.floor((Math.random()*localData.macRepeatArr.length))];
       loadImg(defaultImg,'repeat');
 
       // 创造雪花
