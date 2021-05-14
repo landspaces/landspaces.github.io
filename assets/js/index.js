@@ -49,7 +49,8 @@ import localData from './localData.js';
         type === 'img' ?
         $('body').css('background',`url(${imgbox.src})`).css('background-size',`cover`):
         $('body').css('background',`url(${imgbox.src})`)
-        $('.loading').hide();$('.clickChangeImg').disabled = true;
+        $('.loading').hide();
+        $('.clickChangeImg').disabled = true;
         console.log(Date.parse(new Date())-imgstart,'img end');
       };
     }

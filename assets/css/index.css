@@ -3,15 +3,11 @@
 body {
   width: 100vw;
   height: 100vh;
-  /* display: flex; */
   overflow: hidden;
-  font: 12px/150% Arial, Verdana, "\5b8b\4f53";
-  filter: drop-shadow(0 0 10px white);
 }
-
+/* 菜单 */
 .navMenu {
   width: 60vw;
-  /* min-width: 1000px; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -30,35 +26,17 @@ body {
   text-align: center;
   font-size: 22px;
   font-weight: 800;
-  background-color: #66ccff;
   border-radius: 0.5rem;
   text-decoration: none;
+  background-color: rgba(0,0,0,0.3);
+  -webkit-backdrop-filter: blur(2px);   /* Safari for macOS & iOS */
+  backdrop-filter: blur(2px);   /* Google Chrome */
 }
 
 .navMenu a:hover {
-  color: #66ffcc;
+  background-color: rgba(0,0,0,0.5);
 }
-
-.loading {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  line-height: 85vh;
-  text-align: center;
-  color: #ffffff;
-  font-size: 20px;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 999999;
-}
-
-.loading img {
-  width: 8rem;
-  height: 8rem;
-  border-radius: 50%;
-  filter: drop-shadow(0px 0px 30px #66ccff);
-}
+/* 工具 */
 .tools{
   position: absolute;
   top: 0px;
@@ -73,13 +51,77 @@ body {
   border: 1px solid #ffffff;
   border-radius: 5px;
   color: #ffffff;
-  background-color: #66ccff;
+  background-color: rgba(0,0,0,0.3);
+  -webkit-backdrop-filter: blur(2px);   /* Safari for macOS & iOS */
+  backdrop-filter: blur(2px);   /* Google Chrome */
 }
 
 .tools .changeImg:hover {
   cursor: pointer;
-  background-color: #66ffcc;
+  background-color: rgba(0,0,0,0.5);
 }
+
+/* loading */
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* line-height: 85vh; */
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  background-color: rgba(0,0,0,0.3);
+  -webkit-backdrop-filter: blur(15px);   /* Safari for macOS & iOS */
+  backdrop-filter: blur(15px);   /* Google Chrome */
+  z-index: 999999;
+  animation: colorBreath 5s ease-in alternate infinite;
+
+}
+@keyframes colorBreath {
+  0% {
+    filter: drop-shadow(0px 0px 30px #66ccff);
+  }
+  25% { 
+    filter: drop-shadow(0px 0px 30px #ccff66);
+  }
+  50% {
+    filter: drop-shadow(0px 0px 30px #cc66ff);
+  }
+  75% {
+    filter: drop-shadow(0px 0px 30px #ffcc66);
+  }
+  100% {
+    filter: drop-shadow(0px 0px 30px #66ffcc);
+  }
+}
+@keyframes jump {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    box-shadow: 0px 0px 20px 10px #66ccff;
+    transform: translateY(50px);
+  }
+}
+.loading .loadingImg {
+  width: 8rem;
+  height: 8rem;
+  position: absolute;
+  display: inline-block;
+  border-radius: 50%;
+  /* filter: drop-shadow(0px 0px 30px #66ccff); */
+  animation: jump 0.58s ease-in alternate infinite;
+}
+.loading .loadingText {
+  position: relative;
+}
+
+
+
+
+
 /* 播放器 */
 .audioPlayer{
   position: fixed;
