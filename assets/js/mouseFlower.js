@@ -9,7 +9,7 @@ function mouseFont (){
     arrIndex = (arrIndex + 1) % arrfont.length;
     let x = e.pageX,y = e.pageY;
     $i.css({
-      "z-index": 888888,
+      "z-index": 999999,
       "top": y - 20,
       "left": x,
       "position": "absolute",
@@ -42,7 +42,7 @@ function mouseFlower() {
   const canvas = document.createElement("canvas");
   console.log(document.body);
   document.body.appendChild(canvas);
-  canvas.setAttribute("style", "width: 100%; height: 100%; top: 0; left: 0; z-index: 888888; position: fixed; pointer-events: none;");
+  canvas.setAttribute("style", "width: 100%; height: 100%; top: 0; left: 0; z-index: 999999; position: fixed; pointer-events: none;");
   const pointer = document.createElement("span");
   pointer.classList.add("pointer");
   document.body.appendChild(pointer);

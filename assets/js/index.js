@@ -12,8 +12,8 @@ import localData from './localData.js';
     $('.clickMusic').click(()=>{$('.audioPlayer').toggle()});
     $('.controllMusic .front').click(()=>{$('meting-js')[0].aplayer.skipBack()})
     $('.controllMusic .next').click(()=>{$('meting-js')[0].aplayer.skipForward()})
-    $('.controllMusic .normal').click(()=>{$('meting-js')[0].aplayer.setMode('normal');$('.controllMusic .normal').hide();$('.controllMusic .mini').show()})
-    $('.controllMusic .mini').click(()=>{$('meting-js')[0].aplayer.setMode('mini');$('.controllMusic .mini').hide();$('.controllMusic .normal').show()})
+    $('.controllMusic .normal').click(()=>{if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {return};$('meting-js')[0].aplayer.setMode('normal');$('.controllMusic .normal').hide();$('.controllMusic .mini').show()})
+    $('.controllMusic .mini').click(()=>{if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {return};$('meting-js')[0].aplayer.setMode('mini');$('.controllMusic .mini').hide();$('.controllMusic .normal').show()})
 /////////////////////////////////////////////////////////////////
 // 注册各种方法
 /////////////////////////////////////////////////////////////////
@@ -32,8 +32,8 @@ import localData from './localData.js';
       let snowstart = Date.parse(new Date())
       let Fragment = document.createDocumentFragment();
       for (let i = 0; i <= 500; i++) {Fragment.appendChild($("<div></div>").addClass('snow')[0])};
-      
       $('#snowbox').append(Fragment);
+
       console.log(Date.parse(new Date())-snowstart,'snow end');
 
       // 音乐播放器开关
@@ -49,7 +49,7 @@ import localData from './localData.js';
         type === 'img' ?
         $('body').css('background',`url(${imgbox.src})`).css('background-size',`cover`):
         $('body').css('background',`url(${imgbox.src})`)
-        // $('.loading').hide();
+        $('.loading').hide();
         $('.clickChangeImg').disabled = true;
         console.log(Date.parse(new Date())-imgstart,'img end');
       };
