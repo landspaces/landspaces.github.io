@@ -31,7 +31,7 @@ import localData from './localData.js';
       // 创造雪花
       let snowstart = Date.parse(new Date())
       let Fragment = document.createDocumentFragment();
-      for (let i = 0; i <= 500; i++) {Fragment.appendChild($("<div></div>").addClass('snow')[0])};
+      for (let i = 0; i <= 200; i++) {Fragment.appendChild($("<div></div>").addClass('snow')[0])};
       $('#snowbox').append(Fragment);
 
       console.log(Date.parse(new Date())-snowstart,'snow end');
