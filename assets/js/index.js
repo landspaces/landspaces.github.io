@@ -12,8 +12,8 @@ import localData from './localData.js';
     $('.clickMusic').click(()=>{$('.audioPlayer').toggle()});
     $('.controllMusic .front').click(()=>{$('meting-js')[0].aplayer.skipBack()})
     $('.controllMusic .next').click(()=>{$('meting-js')[0].aplayer.skipForward()})
-    $('.controllMusic .normal').click(()=>{if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {return};$('meting-js')[0].aplayer.setMode('normal');$('.controllMusic .normal').hide();$('.controllMusic .mini').show()})
-    $('.controllMusic .mini').click(()=>{if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {return};$('meting-js')[0].aplayer.setMode('mini');$('.controllMusic .mini').hide();$('.controllMusic .normal').show()})
+    $('.controllMusic .normal').click(()=>{$('meting-js')[0].aplayer.setMode('normal');$('.controllMusic .normal').hide();$('.controllMusic .mini').show()})
+    $('.controllMusic .mini').click(()=>{$('meting-js')[0].aplayer.setMode('mini');$('.controllMusic .mini').hide();$('.controllMusic .normal').show()})
 /////////////////////////////////////////////////////////////////
 // 注册各种方法
 /////////////////////////////////////////////////////////////////
@@ -27,15 +27,17 @@ import localData from './localData.js';
       // 首加载的平铺
       let defaultImg = localData.macRepeatArr[Math.floor((Math.random()*localData.macRepeatArr.length))];
       loadImg(defaultImg,'repeat');
-
-      // 创造雪花
-      let snowstart = Date.parse(new Date())
-      let Fragment = document.createDocumentFragment();
-      for (let i = 0; i <= 200; i++) {Fragment.appendChild($("<div></div>").addClass('snow')[0])};
-      $('#snowbox').append(Fragment);
-
-      console.log(Date.parse(new Date())-snowstart,'snow end');
-
+      // 非移动端
+      if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {        
+        // 创造雪花
+        let snowstart = Date.parse(new Date())
+        let Fragment = document.createDocumentFragment();
+        for (let i = 0; i <= 200; i++) {Fragment.appendChild($("<div></div>").addClass('snow')[0])};
+        $('#snowbox').append(Fragment);
+        console.log(Date.parse(new Date())-snowstart,'snow end');
+      }else{
+        $('.controllMusic .normal').hide()
+      }
       // 音乐播放器开关
       // $('.audioPlayer').hide();
     }
