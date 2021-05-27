@@ -4,15 +4,21 @@ const webpack = require('webpack')
 const config = require('../config')
 const merge = require('webpack-merge')
 const path = require('path')
+// 引入基础配置
 const baseWebpackConfig = require('./webpack.base.conf')
+// 引入版权插件
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+// 打包html到dist文件下, 并自动引入main.js文件
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+//友好的错误提示插件
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+// 环境变量
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
+// merge函数: 将两个配置和并. 这里是将基础配置和开发环境的配置进行合并
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
@@ -44,6 +50,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       poll: config.dev.poll,
     }
   },
+  // 开发环境插件
   plugins: [
     new webpack.DefinePlugin({
       'process.env': require('../config/dev.env')
