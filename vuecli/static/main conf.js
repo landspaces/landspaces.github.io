@@ -1,9 +1,3 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router'
-import elementui from 'element-ui'
 // 1.取消 Vue 所有的日志与警告
     // Vue.config.silent = false;
 
@@ -56,27 +50,17 @@ import elementui from 'element-ui'
     // Vue.config.performance = false
   
 // 9.设置为 false 以阻止 vue 在启动时生成生产提示。
-    Vue.config.productionTip = false
+    // Vue.config.productionTip = false
 // 10.Vue.version // 细节：提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
-    var version = Number(Vue.version.split('.')[0])
-    if (version === 2) {
-      // Vue v2.x.x
-    } else if (version === 1) {
-      // Vue v1.x.x
-    } else {
-      // Unsupported versions of Vue
-    }
+    // var version = Number(Vue.version.split('.')[0])
+    // if (version === 2) {
+    //   // Vue v2.x.x
+    // } else if (version === 1) {
+    //   // Vue v1.x.x
+    // } else {
+    //   // Unsupported versions of Vue
+    // }
 
 // 11.Vue.use( plugin )
   // 该方法需要在调用 new Vue() 之前被调用。
   // 当 install 方法被同一个插件多次调用，插件将只会被安装一次。
-  Vue.use(elementui)
-
-  const vm = new Vue({
-    el: '#app',
-    router,
-    components: { App },
-    template: '<App/>'
-  })
-  console.log(vm);
-
