@@ -10,7 +10,9 @@
       <div class="titleBar">
 
       </div>
-      <router-view/>
+      <div class="contentView">
+        <router-view/>
+      </div>
     </div>
   </div>
 </template>
@@ -50,13 +52,17 @@ export default {
 }
 .content{
   width: 100%;
-  height: calc(100vh-50px);
-  background-color: #cccfff;
+  height: 100vh;
 }
-.titleBar{
+.content .titleBar{
   width: 100%;
   height: 50px;
   background-color: #fff223;
+}
+.content .contentView{
+  width: 100%;
+  height: calc(100vh - 50px);
+  background-color: #cccfff;
 }
 .routebox{
   display: flex;
