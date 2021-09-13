@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
+import './assets/style/reset.css';
 import {getElementUi} from './vue/elment'
 // 按需加载element
   getElementUi(Vue)
@@ -11,7 +13,8 @@ import {getElementUi} from './vue/elment'
   const vm = new Vue({
     el: '#app',
     router,
+    store,
     render: h=>h(App)
   })
-  console.log(vm);
+  console.log('vue实例', vm);
 

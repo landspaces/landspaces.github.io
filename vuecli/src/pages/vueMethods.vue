@@ -1,6 +1,6 @@
 <template>
-  <div class="pages">
-    <el-button type="primary">hello vue</el-button>
+  <div>
+
   </div>
 </template>
 

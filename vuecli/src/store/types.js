@@ -1,0 +1,4 @@
+const SET_TESTNAME = 'SET_TESTNAME'
+export {
+  SET_TESTNAME
+}
