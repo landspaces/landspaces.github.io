@@ -1,15 +1,10 @@
 <template>
   <div class="layout">
-    <!-- <div class='routebox' v-for="(item, index) in routeData" :key="index">
-      <el-button :disabled="item.path === $route.fullPath || item.path == '/'" class="routeBtn" type="primary" @click="routePush(item.path)">{{item.path}}</el-button>
-    </div> -->
     <div class="menus">
-
+      <menus></menus>
     </div>
     <div class="content">
-      <div class="titleBar">
-
-      </div>
+      <div class="titleBar"></div>
       <div class="contentView">
         <router-view/>
       </div>
@@ -18,15 +13,16 @@
 </template>
 
 <script>
-import RouteData from '@/router'
+// import {vueDemos} from '@/router/layoutChilden'
+import menus from '@/layout/menus'
 export default {
   data () {
     return {
-      routeData: [...RouteData.options.routes]
+      // routeData: [...vueDemos]
     }
   },
-  created () {
-    console.log(RouteData);
+  components: {
+    menus
   },
   methods: {
     routePush (val) {
@@ -42,13 +38,12 @@ export default {
 .layout{
   width: 100vw;
   height: 100vh;
-  min-width: 1200px;
   display: flex;
 }
 .menus{
   width: 300px;
   height: 100vh;
-  background-color: #ccc;
+  background-color: #fff;
 }
 .content{
   width: 100%;
@@ -57,17 +52,14 @@ export default {
 .content .titleBar{
   width: 100%;
   height: 50px;
-  background-color: #fff223;
+  background-color: #ff99cc;
 }
 .content .contentView{
   width: 100%;
   height: calc(100vh - 50px);
-  background-color: #cccfff;
-}
-.routebox{
-  display: flex;
-}
-.routeBtn{
-  margin: 5px;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: #f3f5f9;
+  overflow: scroll;
 }
 </style>

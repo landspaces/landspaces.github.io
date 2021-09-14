@@ -1,7 +1,7 @@
-import helloVue from '@/pages/helloVue.vue'
-import vueRouteLife from '@/pages/vueRouteLife.vue'
-import vueMethods from '@/pages/vueMethods.vue'
-export default [
+import helloVue from '@/pages/vueDemos/helloVue.vue'
+import vueRouteLife from '@/pages/vueDemos/vueRouteLife.vue'
+import vueMethods from '@/pages/vueDemos/vueMethods.vue'
+export const vueDemos = [
   {
     path: '/layout/helloVue',
     name:'helloVue',
@@ -22,4 +22,4 @@ export default [
     name:'vueMethods',
     component: vueMethods,
   }
-] 
+]

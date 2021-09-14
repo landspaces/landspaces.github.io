@@ -1,9 +1,16 @@
 <template>
-  <div style="margin-left:20px">lifeChildDeep</div>
+  <div style="margin-left:20px">lifeChildDeep - {{sunzi}}</div>
 </template>
 
 <script>
 export default {
+  inject: {
+    sunzi:{
+      from: 'sunzi',
+      default:'2333'
+    }
+  },
+  // inject: ['sunzi'],
   // 生命周期
   beforeCreate () {
     console.log('孙=beforeCreate');

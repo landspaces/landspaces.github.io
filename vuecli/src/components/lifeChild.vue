@@ -1,6 +1,8 @@
 <template>
-  <div>
-    lifeChild
+  <div class="lifeChild">
+    <slot></slot>
+    <slot name="hander"></slot>
+    <slot name="footer" :child="resData.children"></slot>
     <life-child-deep></life-child-deep>
   </div>
 </template>
@@ -8,11 +10,27 @@
 <script>
 import lifeChildDeep from '@/components/lifeChildDeep'
 export default {
+  props: ['id'],
+  data () {
+    return {
+      resData: {
+        id: this.id,
+        name: 'resData',
+        children: [
+          {
+            id: 1,
+            name: 'child'
+          }
+        ]
+      }
+    }
+  },
   components: {
     lifeChildDeep
   },
   // 生命周期
   beforeCreate () {
+    this.$emit('childemit', 'childEmit')
     console.log('子=beforeCreate');
   },
   created () {
@@ -39,6 +57,5 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
 </style>

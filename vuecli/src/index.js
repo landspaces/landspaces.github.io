@@ -16,5 +16,5 @@ import {getElementUi} from './vue/elment'
     store,
     render: h=>h(App)
   })
-  console.log('vue实例', vm);
+  console.log('_+_+_+_+_+index.js打印: vue实例', vm);
 
