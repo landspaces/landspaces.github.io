@@ -3,7 +3,7 @@
     <slot></slot>
     <slot name="hander"></slot>
     <slot name="footer" :child="resData.children"></slot>
-    <life-child-deep></life-child-deep>
+    <life-child-deep v-bind="$attrs" v-on="$listeners" @sunemit="sunEmit" dataSun1='dataSun1'></life-child-deep>
   </div>
 </template>
 
@@ -13,6 +13,7 @@ export default {
   props: ['id'],
   data () {
     return {
+      // 给slot作用域插槽使用
       resData: {
         id: this.id,
         name: 'resData',
@@ -28,12 +29,18 @@ export default {
   components: {
     lifeChildDeep
   },
+  methods: {
+    sunEmit (val) {
+      console.log('_+_+_+_+_+',`${val}用$listeners调用了子组件`);
+    }
+  },
   // 生命周期
   beforeCreate () {
-    this.$emit('childemit', 'childEmit')
     console.log('子=beforeCreate');
   },
   created () {
+    console.log(this.$attrs);
+    this.$listeners.childemit('子组件')
     console.log('子=created');
   },
   beforeMount () {

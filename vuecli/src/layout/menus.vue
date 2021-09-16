@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import {vueDemos} from '@/router/layoutChilden'
+import {vueDemos} from '@/router/routerType/routerMenus'
 export default {
   created () {
     console.log('_+_+_+_+menus.vue打印', this.menuData);

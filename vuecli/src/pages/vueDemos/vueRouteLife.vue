@@ -7,25 +7,22 @@
     </div>
     <div class="demo">
       <el-card>
+        <el-button size='small' @click="color='green'">{{color}}</el-button>
+      </el-card>
+      <el-card>
         <h4>slot-demo:</h4>
-        <life-child :id="test_id" @childemit="childEmit" style="background:#eeeccc">
+        <life-child v-bind="$attrs" v-on="$listeners" dataSon1 ='dataSon1' dataSon2 ='dataSon2' @childemit="childEmit" style="background:#eeeccc">
           <template>
-            测试组件默认插槽
+            1.测试组件默认插槽
           </template>
           <template #hander>
-            测试组件具名插槽
+            2.测试组件具名插槽
           </template>
           <template v-slot:footer="mySlot" >
-            测试组件具名插槽+作用域插槽：{{ mySlot.child[0].name }}
+            3.测试组件具名插槽+作用域插槽：{{ mySlot.child[0].name }}
           </template> 
         </life-child><br/>
 
-        <!--
-          max     最多可以缓存多少组件实例
-          include/exclude 只有名称匹配的组件会/不会被缓存
-          先检查组件自身的 name 选项，否则匹配它的局部注册名称 (父组件 components 选项的键值)
-          匿名组件不能被匹配
-        -->
         <h4>keepalive-demo:</h4>
         <div class="testkeep">
           <keep-alive :max='10' :include="['keepon']">
@@ -41,6 +38,31 @@
       </el-card>
     </div>
     <div class="article">
+      <el-card>
+        <h3>组件通讯：</h3>
+        <h3>$attrs/$listeners</h3>
+        <h4>$attrs</h4>
+        1.组件v-bind=“$attrs”可传给子组件非绑定值，如datason=‘datason’<br/>
+        2.子组件再v-bind=“$attrs”可继续累加传给孙组件<br/>
+        3.this.$attrs.xxx可取<br/>
+        <h4>$listeners</h4>
+        1.组件v-on=“$listeners”可传方法给子组件，如@xxx=xxx<br/>
+        2.子组件再v-on=“$listeners”可继续累加传给孙组件<br/>
+        3.this.$listeners.xxx可直接调取<br/><br/>
+        <h3>provide/inject是链式查找，找到就停止</h3>
+        <h5>第一种</h5>
+        字符串方式简单传值<br/>
+        provide:{sunzi:''}<br/>
+        <h5>第二种</h5>
+        函数方式可使用this<br/>
+        provide(){return{color:this.color,text:this.text}}<br/>
+        <h5>第三种</h5>
+        以上绑定是不可响应的，provide改变不会通知inject<br/>
+        provide(){return{color:()=>this.color}}<br/>
+        <h3>inject接收</h3>
+        inject:['sunzi']<br/>
+        inject:{mycolor:{from:'color',default:'xxx'},mytext:{from:'text',default:'xxx'}}<br/>
+      </el-card>
       <el-card>
         <h4>路由守卫流程：</h4>
           全局守卫：beforeEach<br/>
@@ -119,10 +141,27 @@ export default {
     keepalive,
     lifeChild
   },
-  // 依赖注入
-  provide(){
+  data () {
     return {
-      sunzi:'给孙子的一席话'
+      color:'red',
+      text:'到底能不能好好干'
+    }
+  },
+  // 1.依赖注入(对象方式拿不到this)
+  // provide: {
+  //   sunzi:'给孙子的一席话'
+  // },
+  // 2.依赖注入(函数方式可以传this)
+  // provide () {
+  //   return {
+  //     text: this.text,
+  //     color: this.color
+  //   }
+  // },
+  // 3.以上传数据是不可响应的，可改为方法传输
+  provide () {
+    return {
+      color: () => this.color
     }
   },
   // 组件前置守卫：因为当守卫执行前，组件实例还没被创建，不能获取组件实例 `this`，但是可以拿vm实例
@@ -200,7 +239,7 @@ export default {
       this.setTestName('ccc')
     },
     childEmit (val) {
-      console.log('_+_+_+_+_+childEmit', val);
+      console.log('_+_+_+_+_+',`${val}用$listeners调用了父组件`);
     }
   }
 }
