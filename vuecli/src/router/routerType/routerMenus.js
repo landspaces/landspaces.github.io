@@ -1,6 +1,7 @@
 import helloVue from '@/pages/vueDemos/helloVue.vue'
 import vueRouteLife from '@/pages/vueDemos/vueRouteLife.vue'
 import vueMethods from '@/pages/vueDemos/vueMethods.vue'
+
 export const vueDemos = [
   {
     path: '/layout/helloVue',

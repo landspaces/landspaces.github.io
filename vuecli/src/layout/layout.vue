@@ -4,7 +4,9 @@
       <menus></menus>
     </div>
     <div class="content">
-      <div class="titleBar"></div>
+      <div class="titleBar">
+        <el-button size='small' @click="loginOut">退出</el-button>
+      </div>
       <div class="contentView">
         <router-view/>
       </div>
@@ -25,6 +27,10 @@ export default {
     menus
   },
   methods: {
+    loginOut () {
+      localStorage.setItem('token','');
+      this.$router.push({path:'/login'})
+    },
     routePush (val) {
       let res = val === this.$route.fullPath || val == '/'
       !res ? this.$router.push({path: val}) : ''

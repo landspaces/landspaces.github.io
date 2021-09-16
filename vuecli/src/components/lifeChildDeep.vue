@@ -1,13 +1,22 @@
 <template>
-  <div style="margin-left:20px">lifeChildDeep - {{sunzi}}</div>
+  <div style="margin-left:20px">
+    孙组件
+    <!-- {{sunzi}} -->
+    <!-- {{mytext}} -->
+    {{mycolor()}}
+  </div>
 </template>
 
 <script>
 export default {
   inject: {
-    sunzi:{
-      from: 'sunzi',
+    mytext:{
+      from: 'text',
       default:'2333'
+    },
+    mycolor:{
+      from: 'color',
+      default:'green'
     }
   },
   // inject: ['sunzi'],
@@ -16,6 +25,9 @@ export default {
     console.log('孙=beforeCreate');
   },
   created () {
+    console.log(this.$attrs);
+    this.$listeners.childemit('孙组件')
+    this.$listeners.sunemit('孙组件')
     console.log('孙=created');
   },
   beforeMount () {
