@@ -76,7 +76,8 @@ import {
   Loading,
   MessageBox,
   Message,
-  Notification
+  Notification,
+  Scrollbar
 } from 'element-ui';
 export const getElementUi = (Vue) => {
   Vue.use(Pagination);
@@ -152,6 +153,7 @@ export const getElementUi = (Vue) => {
   Vue.use(Backtop);
   Vue.use(PageHeader);
   Vue.use(CascaderPanel);
+  Vue.use(Scrollbar);
   Vue.use(Loading.directive);
   Vue.prototype.$loading = Loading.service;
   Vue.prototype.$msgbox = MessageBox;

@@ -1,6 +1,3 @@
-import login from '@/layout/login.vue'
-import notFoundPage from '@/layout/404.vue'
-
 export const otherRoute = [
   {
     path: '/',
@@ -9,12 +6,12 @@ export const otherRoute = [
   {
     path: '/login',
     name: 'login',
-    component: login
+    component: ()=>import('@/layout/login.vue')
   }
 ]
 export const notFound = [
   {
     path: '*',
-    component: notFoundPage
+    component: ()=>import('@/layout/404.vue')
   }
 ]

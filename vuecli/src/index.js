@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import './assets/style/reset.css';
+import 'nprogress/nprogress.css';
 import {getElementUi} from './vue/elment'
 // 按需加载element
   getElementUi(Vue)
