@@ -7,19 +7,20 @@
         :close-on-click-modal="false"
         :close-on-press-escape="false"
         :visible.sync="centerDialogVisible"
-        width="50%"
+        width="30%"
+        style="margin-top:10vh"
         center>
         <div>
           <div class="inputCss">
-            账号：<el-input class="inputwidth" v-model="user_name"/>
+            <div class="texttip">账号：</div><el-input @keyup.enter.native="enter" class="inputwidth" v-model="user_name"/>
           </div>
           <div class="inputCss">
-            密码：<el-input class="inputwidth" v-model="user_pass"/>
+            <div class="texttip">密码：</div><el-input @keyup.enter.native="enter" class="inputwidth" v-model="user_pass"/>
           </div>
           
         </div>
         <span slot="footer" class="dialog-footer">
-          <el-button type="primary" v-on:keyup.enter="setToken()" @click="setToken()">确 定</el-button>
+          <el-button size='mini' type="primary" @click="setToken">登陆</el-button>
         </span>
       </el-dialog>
     </div>
@@ -47,7 +48,7 @@ export default {
       }
     },
     setToken () {
-      if (this.user_name === 'abc' && this.user_pass === '123') {        
+      if (this.user_name === 'sure' && this.user_pass === '111') {        
         localStorage.setItem('token', '瞎几把写的token')
         const timer = setTimeout(()=>{
           localStorage.setItem('token', '')
@@ -57,6 +58,9 @@ export default {
         })
         this.$router.push('/layout')
       }
+    },
+    enter () {
+      this.setToken ()
     }
   }
 }
@@ -66,5 +70,14 @@ export default {
 .inputCss{
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+.inputCss .inputwidth{
+  width: 300px;
+  box-sizing: border-box;
+}
+.texttip{
+  width: 50px;
 }
 </style>
