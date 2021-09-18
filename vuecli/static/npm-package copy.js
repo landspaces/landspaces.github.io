@@ -4,10 +4,10 @@
 
 let packagejs = {
 //////////////////////////////////////////////////////////////////////
-// 基础信息类
+// MARKS:基础信息类
 //////////////////////////////////////////////////////////////////////
   /*
-  必填 项目名
+  // [IMPORTANT]: [必填]： 项目名
   模块名会成为模块 url、命令行中的一个参数或者一个文件夹名称，任何非 url 安全的字符在模块名中都不能使用
     1.语义化模块名
     2.它不能超过214个字符且只能是小写字母，若模块名称中存在一些符号，将符号去除后不得与现有的模块名重复
@@ -18,6 +18,7 @@ let packagejs = {
   */
   "name": "myvue",
 
+  // [IMPORTANT]:[必填]：版本
   // npm 包中的模块版本都需要遵循 SemVer 规范，该规范的标准版本号采用 X.Y.Z 的格式。其中 X、Y 和 Z 均为非负的整数，且禁止在数字前方补零
       // X 是主版本号(major)：修改了不兼容的 API
       // Y 是次版本号(minor)：新增了向下兼容的功能
@@ -45,20 +46,65 @@ let packagejs = {
     "email": "example@example.com",
     "url": "https://www.osiolabs.com/#team"
   }],
-  // 许可证
-  // 例如 MIT 或 ISC 之类的字符串，它们代表MIT 许可证和 ISC 许可证
-  // 如果你不想提供许可证，或者明确不想授予使用私有或未发布的软件包的权限，则可以将 UNLICENSED 作为许可证
+
+  // 该模块的主页
+  "homepage": "http://ant.design/",
+  // 记录项目代码所在的资源库。
+    // 该字段是一个对象，用于定义源代码所在的 url 及其使用的版本控制系统的类型。
+    // 对于开源项目，可能是以 Git 作为版本控制系统的 GitHub 或 Bitbucket
+    // 需要注意的是 URL 字段的本意是指向可从中访问版本控制的位置，而不仅仅是指向已发布的代码库
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/osiolabs/example.git"
+    },
+  // 对你的模块存在疑问的人可以到这里提出问题
+  "bugs": {
+    "url": "https://github.com/ant-design/ant-design/issues"
+  },
+
+  // 协议
+  // MIT：只要用户在项目副本中包含了版权声明和许可声明，他们就可以拿你的代码做任何想做的事情，你也无需承担任何责任。
+  // Apache：类似于 MIT，同时还包含了贡献者向用户提供专利授权相关的条款。
+  // GPL：修改项目代码的用户再次分发源码或二进制代码时，必须公布他的相关修改。
+  // 如果你不想提供协议，或者明确不想授予使用私有或未发布的软件包的权限，则可以将 UNLICENSED 作为协议
   "license": "ISC",
 
 //////////////////////////////////////////////////////////////////////
-// 配置入口类
+// MARKS: 依赖配置
 //////////////////////////////////////////////////////////////////////
-
-// 可以在脚本中通过npm_package_config_xxx 的形式引用
-  "config": {
-    "port": "8080"
+  // 安装项目依赖
+  // npm install <package...> --save 写入 dependencies 属性
+  // dependencies
+      // 指定了项目运行所依赖的模块（生产环境使用），如 antd、 react、 moment等插件库
+      // 它们是我们生产环境所需要的依赖项，在把项目作为一个 npm 包的时候，用户安装 npm 包时只会安装 dependencies 里面的依赖。
+      "dependencies": { 
+        "vue": "^2.5.2",
+        "vue-router": "^3.0.1"
+      },
+      // npm install <package...> --save-dev 写入 devDependencies 属性
+      // devDependencies
+          // 字段指定了项目开发所需要的模块（开发环境使用），如 webpack、typescript、babel等
+          // 在代码打包提交线上时，我们并不需要这些工具，所以我们将它放入 devDependencies 中
+      "devDependencies": {
+        "autoprefixer": "^7.1.2",
+        "babel-core": "^6.22.1",
+        "babel-helper-vue-jsx-merge-props": "^2.0.3",
+        "babel-loader": "^7.1.1"
+      },
+      
+//////////////////////////////////////////////////////////////////////
+// MARKS:配置入口类
+//////////////////////////////////////////////////////////////////////
+// 用来指定加载的入口文件
+// 你的项目是一个 npm 包，当用户安装你的包后，require('my-module') 返回的是 main 字段中所列出文件的 module.exports 属性
+// 默认值是模块根目录下面的index.js 文件
+// 如何选择看这个链接 https://www.cnblogs.com/qianxiaox/p/14041717.html 
+  "main":"src/index.js",
+  "module": "lib/index.mjs", // module
+  "browser": {// browser 可定义成和 main/module 字段一一对应的映射对象，也可以直接定义为字符串
+    "./lib/index.js": "./lib/index.browser.js", // browser+cjs
+    "./lib/index.mjs": "./lib/index.browser.mjs"  // browser+mjs
   },
-
 
 // 钩子脚本在组织脚本流程时非常好用！
 //   pre：在一个script执行前执行，比如prebuild，可以在打包前做一些准备工作。
@@ -85,17 +131,10 @@ let packagejs = {
     "my-app-cli": "./bin/cli.js"
   },
 
-  // 用来指定加载的入口文件
-  // 你的项目是一个 npm 包，当用户安装你的包后，require('my-module') 返回的是 main 字段中所列出文件的 module.exports 属性
-  // 默认值是模块根目录下面的index.js 文件
-  // 如何选择看这个链接 https://www.cnblogs.com/qianxiaox/p/14041717.html 
-  "main":"src/index.js",
-  "module": "lib/index.mjs", // module
-  "browser": {// browser 可定义成和 main/module 字段一一对应的映射对象，也可以直接定义为字符串
-    "./lib/index.js": "./lib/index.browser.js", // browser+cjs
-    "./lib/index.mjs": "./lib/index.browser.mjs"  // browser+mjs
+// 可以在脚本中通过npm_package_config_xxx 的形式引用
+  "config": {
+    "port": "8080"
   },
-
   // 用于描述我们使用 npm publish 命令后推送到 npm 服务器的文件列表，如果指定文件夹，则文件夹内的所有内容都会包含进来
   // 比如antd 的 package.json 的files 字段如下，antd 包就是只有这三个目录
   // 我们还可以通过配置一个 .npmignore 文件来排除一些文件， 防止大量的垃圾文件推送到 npm 上
@@ -104,68 +143,9 @@ let packagejs = {
     "lib",
     "es"
   ],
-  // 记录项目代码所在的资源库。
-    // 该字段是一个对象，用于定义源代码所在的 url 及其使用的版本控制系统的类型。
-    // 对于开源项目，可能是以 Git 作为版本控制系统的 GitHub 或 Bitbucket
-    // 需要注意的是 URL 字段的本意是指向可从中访问版本控制的位置，而不仅仅是指向已发布的代码库
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/osiolabs/example.git"
-  },
-
-  // 安装项目依赖
-  // npm install <package...> --save 写入 dependencies 属性
-  // npm install <package...> --save-dev 写入 devDependencies 属性
-  // dependencies
-      // 指定了项目运行所依赖的模块（生产环境使用），如 antd、 react、 moment等插件库
-      // 它们是我们生产环境所需要的依赖项，在把项目作为一个 npm 包的时候，用户安装 npm 包时只会安装 dependencies 里面的依赖。
-  "dependencies": { 
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
-  },
-  // devDependencies
-      // 字段指定了项目开发所需要的模块（开发环境使用），如 webpack、typescript、babel等
-      // 在代码打包提交线上时，我们并不需要这些工具，所以我们将它放入 devDependencies 中
-  "devDependencies": {
-    "autoprefixer": "^7.1.2",
-    "babel-core": "^6.22.1",
-    "babel-helper-vue-jsx-merge-props": "^2.0.3",
-    "babel-loader": "^7.1.1",
-    "babel-plugin-syntax-jsx": "^6.18.0",
-    "babel-plugin-transform-runtime": "^6.22.0",
-    "babel-plugin-transform-vue-jsx": "^3.5.0",
-    "babel-preset-env": "^1.3.2",
-    "babel-preset-stage-2": "^6.22.0",
-    "chalk": "^2.0.1",
-    "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.28.0",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^1.1.4",
-    "friendly-errors-webpack-plugin": "^1.6.1",
-    "html-webpack-plugin": "^2.30.1",
-    "node-notifier": "^5.1.2",
-    "optimize-css-assets-webpack-plugin": "^3.2.0",
-    "ora": "^1.2.0",
-    "portfinder": "^1.0.13",
-    "postcss-import": "^11.0.0",
-    "postcss-loader": "^2.0.8",
-    "postcss-url": "^7.2.1",
-    "rimraf": "^2.6.0",
-    "semver": "^5.3.0",
-    "shelljs": "^0.7.6",
-    "uglifyjs-webpack-plugin": "^1.1.1",
-    "url-loader": "^0.5.8",
-    "vue-loader": "^13.3.0",
-    "vue-style-loader": "^3.0.1",
-    "vue-template-compiler": "^2.5.2",
-    "webpack": "^3.6.0",
-    "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
-  },
 
 //////////////////////////////////////////////////////////////////////
-// 限制类
+// MARKS:限制类
 //////////////////////////////////////////////////////////////////////
   
   // 一般公司的非开源项目，都会设置 private 属性的值为 true，这是因为 npm 拒绝发布私有模块，通过设置该字段可以防止私有模块被无意间发布出去
