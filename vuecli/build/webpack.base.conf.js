@@ -8,8 +8,12 @@ const vueLoaderConfig = require('./vue-loader.conf')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
+  plugins:[
+    new BundleAnalyzerPlugin()
+  ],
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/index.js'
