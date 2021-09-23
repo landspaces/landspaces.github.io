@@ -11,7 +11,7 @@
       </el-card>
       <el-card>
         <h4>slot-demo:</h4>
-        <life-child v-bind="$attrs" v-on="$listeners" dataSon1 ='dataSon1' dataSon2 ='dataSon2' @childemit="childEmit" style="background:#eeeccc">
+        <life-child :show.sync='show' v-bind="$attrs" v-on="$listeners" dataSon1 ='dataSon1' dataSon2 ='dataSon2' @childemit="childEmit" style="background:#eeeccc">
           <template>
             1.测试组件默认插槽
           </template>
@@ -22,6 +22,8 @@
             3.测试组件具名插槽+作用域插槽：{{ mySlot.child[0].name }}
           </template> 
         </life-child><br/>
+        <h4>异步组件</h4>
+        <AsyncComponent/>
 
         <h4>keepalive-demo:</h4>
         <div class="testkeep">
@@ -136,13 +138,24 @@ import keepalive from '@/components/keepalive'
 import lifeChild from '@/components/lifeChild'
 import * as types from '@/store/types'
 import { mapState, mapGetters, mapMutations} from 'vuex';
+
+// export default { components:{ AsyncComponent:()=>import(/* webpackChunkName: "AsyncComponent" */ '@/components/lifeChildAsync') } }
 export default {
   components: {
     keepalive,
-    lifeChild
+    lifeChild,
+    // 异步组件
+    AsyncComponent:()=>({
+      component:import(/* webpackChunkName: "AsyncComponent" */ '@/components/lifeChildAsync'),
+      delay:10000, // 延迟几毫秒，默认200
+      timeout:30000, // 加载几毫米之后就超时，触发error组件
+      loading:'LoadingComponent', // 组件未加载回来前显示
+      error:'ErrorComponent' // 组件超时时显示
+    })
   },
   data () {
     return {
+      show: true,
       color:'red',
       text:'到底能不能好好干'
     }

@@ -3,14 +3,17 @@
     <slot></slot>
     <slot name="hander"></slot>
     <slot name="footer" :child="resData.children"></slot>
-    <life-child-deep v-bind="$attrs" v-on="$listeners" @sunemit="sunEmit" dataSun1='dataSun1'></life-child-deep>
+    <el-button @click="toggle">孙子组件toggle</el-button>
+    <div v-if="show">
+      <life-child-deep v-bind="$attrs" v-on="$listeners" @sunemit="sunEmit" dataSun1='dataSun1'></life-child-deep>
+    </div>
   </div>
 </template>
 
 <script>
 import lifeChildDeep from '@/components/lifeChildDeep'
 export default {
-  props: ['id'],
+  props: ['id','show'],
   data () {
     return {
       // 给slot作用域插槽使用
@@ -30,6 +33,9 @@ export default {
     lifeChildDeep
   },
   methods: {
+    toggle () {
+      this.$emit('update:show',!this.show)
+    },
     sunEmit (val) {
       console.log('_+_+_+_+_+',`${val}用$listeners调用了子组件`);
     }

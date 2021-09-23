@@ -1,9 +1,11 @@
 <template>
-  <div style="margin-left:20px">
-    孙组件
-    <!-- {{sunzi}} -->
-    <!-- {{mytext}} -->
-    {{mycolor()}}
+  <div style="background:#ffccff; margin-left:20px">
+    <div>
+      孙组件
+      <!-- {{sunzi}} -->
+      <!-- {{mytext}} -->
+      {{mycolor()}}
+    </div>
   </div>
 </template>
 
