@@ -7,7 +7,7 @@
     </div>
     <div class="demo">
       <el-card>
-        <el-button size='small' @click="color='green'">{{color}}</el-button>
+        <el-button size='small' @click="color='green'" :style="{color:color}">provide-{{color}}</el-button>
       </el-card>
       <el-card>
         <h4>slot-demo:</h4>
