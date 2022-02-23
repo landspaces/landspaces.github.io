@@ -9,11 +9,11 @@ import localData from './localData.js';
     $('.clickChangeImg').click(()=>{let Imgurl = `${localData.macImgArr[Math.floor((Math.random()*localData.macImgArr.length))]}`;loadImg(Imgurl,'img');});
     $('.clickChangeRepeat').click(()=>{let Imgurl = `${localData.repeatimgArr[Math.floor((Math.random()*localData.repeatimgArr.length))]}`;loadImg(Imgurl,'repeat');});
     // 注册点击播放音乐(暂时废弃)
-    $('.clickMusic').click(()=>{$('.audioPlayer').toggle()});
-    $('.controllMusic .front').click(()=>{$('meting-js')[0].aplayer.skipBack()})
-    $('.controllMusic .next').click(()=>{$('meting-js')[0].aplayer.skipForward()})
-    $('.controllMusic .normal').click(()=>{$('meting-js')[0].aplayer.setMode('normal');$('.controllMusic .normal').hide();$('.controllMusic .mini').show()})
-    $('.controllMusic .mini').click(()=>{$('meting-js')[0].aplayer.setMode('mini');$('.controllMusic .mini').hide();$('.controllMusic .normal').show()})
+    // $('.clickMusic').click(()=>{$('.audioPlayer').toggle()});
+    // $('.controllMusic .front').click(()=>{$('meting-js')[0].aplayer.skipBack()})
+    // $('.controllMusic .next').click(()=>{$('meting-js')[0].aplayer.skipForward()})
+    // $('.controllMusic .normal').click(()=>{$('meting-js')[0].aplayer.setMode('normal');$('.controllMusic .normal').hide();$('.controllMusic .mini').show()})
+    // $('.controllMusic .mini').click(()=>{$('meting-js')[0].aplayer.setMode('mini');$('.controllMusic .mini').hide();$('.controllMusic .normal').show()})
 /////////////////////////////////////////////////////////////////
 // 注册各种方法
 /////////////////////////////////////////////////////////////////
