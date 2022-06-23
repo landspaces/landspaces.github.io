@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsTosass</title>
+</head>
+<style>
+    #tosass {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    #toolTitle{
+        margin-bottom: 20px;
+    }
+    #inputbox {
+        width: 45vw;
+        height: 70vh;
+    }
+    #outputbox {
+        width: 45vw;
+        height: 70vh;
+        margin-left: 2vw;
+    }
+    #myBtn {
+        width: 200px;
+        height: 50px;
+        margin-top: 20px;
+    }
+</style>
+
+<body>
+    <div>
+        <div id="tosass">
+            <div id="toolTitle">
+                <p>本工具适用于 cssinjs 转换为 scss/sass</p>
+                <p>如需 css 转换为 cssinjs 参考 <a href="https://rnsloan.github.io/css-to-cssinjs/" target="_blank" rel="noopener noreferrer">https://rnsloan.github.io/css-to-cssinjs/</a> </p>
+            </div>
+            <div id="toolbox">
+                <textarea id="inputbox" placeholder="输入JSON.stringfy格式化后的cssinjs,参考控制台输出"></textarea>
+                <textarea id="outputbox" placeholder="输出SCSS/SASS"></textarea>
+            </div>
+            <button id="myBtn">转换</button>
+        </div>
+    </div>
+    <script type="module">
+        import toSassFn from './tosass.js'
+
+        const submit = () => {
+            const inputVal = document.getElementById('inputbox').value;
+            if (inputVal) {
+                const isJsonFn = (json) => {
+                    let is_json = true; 
+                    try {
+                        let object = JSON.parse(json);
+                    } catch (error) {
+                        is_json = false;
+                    }
+                    return is_json;
+                };
+                const isJson = !Number(inputVal) && isJsonFn(inputVal)
+                document.getElementById('outputbox').value = isJson ? toSassFn(JSON.parse(inputVal)) : 'JSON格式或许有问题';
+            }
+        }
+
+        document.getElementById('myBtn').onclick = submit;
+        window.addEventListener("keydown", (ev) => ev.keyCode === 13 && submit());
+
+
+
+
+
+        // 输入示例
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min; //不含最大值，含最小值
+        }
+
+        const mockObj = {
+            [`KEY${getRandomInt(0, 1000)}`]:{
+                color: 'red',
+                flexDirection: 'cloumn',
+                '& .span': {
+                    display: 'flex',
+                    padding: '0',
+                    WebkitInputPlacehoder: 'none',
+                },
+            },
+        }
+        console.log('输入示例：', JSON.stringify(mockObj));
+        
+    </script>
+</body>
+
+</html>
